@@ -5,9 +5,6 @@ using namespace std;
 int findMax(int *ptr, int size) {
     int max = *ptr;
     for (int i = 1; i < size; i++) {
-        if (*ptr + i == -1) {
-            break;
-        }
         if (*(ptr + i) >= max) {
             max = *(ptr + i);
         }
@@ -16,21 +13,20 @@ int findMax(int *ptr, int size) {
 }
 
 void reverseArray(int *ptr, int size) {
-    int start = 0;
-    int end = size - 2;
+    int* start = ptr;
+    int* end = ptr + size - 1;
     while (start < end) {
-        swap(*(ptr + start), *(ptr + end));
-        start++;
-        end--;
+        int temp = *start;
+        *start = *end;
+        *end = temp;
+        ++start;
+        --end;
     }
 }
 
 double calculateAverage(int *ptr, int size) {
     double sum = 0;
     for (int i = 0; i < size; i++) {
-        if (*(ptr + i) == -1) {
-            break;
-        }
         sum += *(ptr + i);
     }
     double res = sum / (size - 1.0);
@@ -38,14 +34,24 @@ double calculateAverage(int *ptr, int size) {
 }
 
 int main() {
-vector<int> n;
-    int a;
-    while (a != -1) {
-        cin >> a;
-        n.push_back(a);
+int arr[];
+int size;
+    while (true) {
+        int num;
+        cin >> num;
+        if (num == -1) break;
+        arr[size++] = num;
     }
-int *ptr = &n[0];
-findMax(ptr, n.size());
+int max = findMax(arr, size);
+    cout << "Maximum value: " << max << endl;
+    cout << "Reversed array: ";
+    reverseArray(arr, size);
+for (int i = 0; i < size; i++) {
+    cout << arr[i] << " ";
+}
+cout << endl;
+double avg = calculateAverage(arr, size);
+cout << "Average: " << avg << endl;
     return 0;
 }
 
