@@ -34,8 +34,9 @@ double calculateAverage(int *ptr, int size) {
 }
 
 int main() {
-int arr[];
-int size;
+    const int MAX_SIZE = 100;
+    int arr[MAX_SIZE];
+    int size;
     while (true) {
         int num;
         cin >> num;
