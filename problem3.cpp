@@ -3,13 +3,13 @@
 using namespace std;
 
 int findMax(int *ptr, int size) {
-    int max = *ptr;
-    for (int i = 1; i < size; i++) {
-        if (*(ptr + i) >= max) {
-            max = *(ptr + i);
+    int maxVal = *ptr;
+    for (int i = 1; i < size; ++i) {
+        if (*(ptr + i) > maxVal) {
+            maxVal = *(ptr + i);
         }
     }
-    return max;
+    return maxVal;
 }
 
 void reverseArray(int *ptr, int size) {
@@ -25,12 +25,11 @@ void reverseArray(int *ptr, int size) {
 }
 
 double calculateAverage(int *ptr, int size) {
-    double sum = 0;
-    for (int i = 0; i < size; i++) {
+    int sum = 0;
+    for (int i = 0; i < size; ++i) {
         sum += *(ptr + i);
     }
-    double res = sum / (size - 1.0);
-    return res;
+    return static_cast<double>(sum) / size;
 }
 
 int main() {
@@ -45,12 +44,16 @@ int main() {
     }
 int max = findMax(arr, size);
     cout << "Maximum value: " << max << endl;
-    cout << "Reversed array: ";
+
+
     reverseArray(arr, size);
+    cout << "Reversed array: ";
 for (int i = 0; i < size; i++) {
     cout << arr[i] << " ";
 }
 cout << endl;
+
+
 double avg = calculateAverage(arr, size);
 cout << "Average: " << avg << endl;
     return 0;
